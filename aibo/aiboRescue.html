@@ -1,0 +1,68 @@
+<HTML>
+<Title> AIBO Rescue </Title>
+<BODY rightmargin="70">
+<center><font size="6" color="red">AIBO Rescue</font></center>
+<br>
+The video for AIBO Rescue, an example of Reinforcement Learning being used on
+a real robot can be found <a href="http://www.youtube.com/watch?v=pC1-qXBzPwA">here</a>.
+<br><br>
+<b>Some questions you might have:</b>
+<br>
+<ul>
+<li><b>What is going on here?</b></li>
+<p>
+A Sony AIBO is placed into a dark blue room with the lights off.  The room contains
+switches for turning on the lights and opening the door to the yellow room as seen here:
+</p>
+<img src="rooms.jpg" alt="schematic of the rooms" >
+<p>
+It's goal, is to somehow open the door and be reunited with the Aibo in the adjacent yellow room.
+In order to do this, it must turn on the lights and open the door.   What you are witnessing is the behavior of the AIBO after several thousand observations using state of the art (in 2005) techniques in reinforcement learning.
+This is not a hard coded behavior.  Only primitive actions like taking a step, turning , and
+head bobbing are pre-programmed.  From those primitive motions, the Aibo has to string together a sequence of actions to maximize its reward signal, which is only received when it enters the adjacent room. 
+</p>
+<br>
+<li><b>What does the AIBO SEE?</b></li>
+<p>
+The AIBO sees images like this:
+</p>
+ <img src="button.jpg" alt="a button" width="100" height="100" >
+<p>
+which are then processed using <a href="http://opencv.willowgarage.com/wiki/">OpenCV</a> to detect shapes like this:
+</p>
+<img src="buttonOut.jpg" alt="a button with an outline" width="100" height="100" >
+<p>
+Using the number, color, and location of shapes, the AIBO can determine where it
+is and how it needs to act in order to accomplish its goal.
+</p>
+</ul>
+<br>
+<b>Some cool emergent behavior:</b>
+<br>
+<ul>
+<li><b>Drawn to the light:</b></li>
+Although the AIBO now goes to the light switch because it knows this will help it
+reach the adjacent room, in the initial stages the AIBO's exploration scheme told it
+to gain experience in parts of the world it knew little about.  This lead to
+the interesting behavior of the dog being drawn to the light.
+<br>
+<li><b>Centering Zig Zag</b></li>
+The AIBO learned that when it was near a button, it was very important to aim for 
+its center, hence when its close it often took a zig-zag approach to make sure it didn't
+miss it, as you can see in the video at about the 50 second mark.
+<br>
+<li><b>Backing away from corners and walls</b></li>
+The AIBO learned that once the lights were on, to stay away from the corners
+(where the bright lights are) and the wall with the light switch button (so it doesn't end
+up back in the dark).  Hence it uses it's "back up" action (which is a bit spastic) in
+such situations.  You can see this is in the video at around the 1:05 and 1:20 marks.
+<br>
+<li><b>Head shake</b></li>
+When the AIBO got a corrupted image due to timing issues with its visual sensors, it
+learned the best thing to do was to bob it's head (instead of moving when it doesn't know
+where it is).  This "no way" head shake can be seen in the video at the 2:11 mark.
+<br>
+</ul>
+</BODY>
+</HTML>
+
